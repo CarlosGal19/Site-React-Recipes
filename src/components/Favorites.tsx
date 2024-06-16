@@ -14,7 +14,7 @@ const Favorites = () => {
           </div>
         ) : (
           favorite.map((item) => (
-            <div key={item.id} className='shadow-md rounded p-4 text-center bg-indigo-200'>
+            <div key={item.id} className='shadow-md rounded p-4 text-center bg-indigo-200 mb-8'>
               <h2 className='font-bold text-3xl'>{item.name}</h2>
               <img src={item.url} alt={item.name} className='object-cover mt-4 rounded-full mx-auto w-1/2' />
               <a href={`/recipe?id=${item.id}`}><button className="px-8 bg-indigo-500 hover:bg-indigo-700 rounded text-white font-bold py-2 x-4 m-4">Show Recipe</button></a>
