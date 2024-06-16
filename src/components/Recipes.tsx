@@ -41,16 +41,16 @@ const Recipes = () => {
   if (!recipes) {
     return (
         <>
-            <div className='bg-gray-300 py-60'>
-                <h1 className='text-6xl font-bold text-center'>No category found</h1>
+            <div className='bg-gray-300 py-60 dark:bg-slate-700'>
+                <h1 className='text-6xl font-bold text-center dark:text-slate-100'>No category found</h1>
             </div>
         </>
     );
 }
 
   return (
-    <div className='text-center py-4 bg-gray-300'>
-      <h1 className='py-8 font-bold text-6xl'>Recipes of category: {id}</h1>
+    <div className='text-center py-4 bg-gray-300 dark:bg-slate-700'>
+      <h1 className='py-8 font-bold text-6xl dark:text-slate-100'>Recipes of category: {id}</h1>
       {loading ? (
         <p className='text-2xl'>Loading...</p>
       ) : (
@@ -58,10 +58,10 @@ const Recipes = () => {
           {recipes.length > 0 ? (
             <ul className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3'>
               {recipes.map(recipe => (
-                <li key={recipe.idMeal} className='py-8 text-center bg-indigo-200 rounded-lg shadow-xl'>
+                <li key={recipe.idMeal} className='py-8 text-center bg-indigo-200 rounded-lg shadow-xl dark:bg-zinc-700'>
                   <img src={recipe.strMealThumb} alt={recipe.strMeal} className='w-3/4 h-auto rounded-full mx-auto my-6' />
                   <a href={`/recipe?id=${recipe.idMeal}`}>
-                    <h2 className='font-bold text-xl hover:text-4xl px-6'>{recipe.strMeal}</h2>
+                    <h2 className='font-bold text-xl hover:text-4xl px-6 dark:text-slate-100'>{recipe.strMeal}</h2>
                   </a>
                 </li>
               ))}

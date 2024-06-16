@@ -2,7 +2,7 @@ const Footer = () => {
     return (
         <>
             <footer
-                className="bg-sky-300 text-center text-surface/75 dark:bg-neutral-700 dark:text-white/75 lg:text-left">
+                className="bg-sky-300 text-center text-surface/75 dark:bg-zinc-950 dark:text-white/75 lg:text-left">
                 <div
                     className="flex items-center justify-center border-b-2 border-neutral-200 p-6 dark:border-white/10 lg:justify-between">
                     <div className="me-12 hidden lg:block">

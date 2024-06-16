@@ -48,19 +48,19 @@ const Recipe = () => {
     if (!recipe) {
         return (
             <>
-                <div className='bg-gray-300 py-60'>
-                    <h1 className='text-6xl font-bold text-center'>No recipe found</h1>
+                <div className='bg-gray-300 py-60 dark:bg-slate-700'>
+                    <h1 className='text-6xl font-bold text-center dark:text-slate-100'>No recipe found</h1>
                 </div>
             </>
         );
     }
 
     return (
-        <div className='text-center py-4 bg-gray-300'>
-            <h1 className='py-8 font-bold text-6xl'>Recipe:</h1>
+        <div className='text-center py-4 bg-gray-300 dark:bg-slate-700'>
+            <h1 className='py-8 font-bold text-6xl dark:text-slate-100'>Recipe:</h1>
             <div className='py-8'>
-                <h2 className='font-bold text-4xl'>{recipe.strMeal}</h2>
-                <h3 className='font-bold text-3xl pt-8'>Category: {recipe.strCategory}</h3>
+                <h2 className='font-bold text-4xl dark:text-slate-100'>{recipe.strMeal}</h2>
+                <h3 className='font-bold text-3xl pt-8 dark:text-slate-100'>Category: {recipe.strCategory}</h3>
                 {
                     isFavorite( parseInt(recipe.idMeal) ) ?
                         <button onClick={() => removeFavorite( parseInt(recipe.idMeal) )} className='bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded mt-4'>Remove from Favorites</button> :
@@ -68,9 +68,9 @@ const Recipe = () => {
                 }
                 <img src={recipe.strMealThumb} alt={recipe.strMeal} className='h-auto rounded-full mx-auto my-6 w-1/4 shadow-xl' />
                 <div className='shadow-xl w-5/6 mx-auto my-8'>
-                    <p className='text-lg text-justify px-36 py-8'>{recipe.strInstructions}</p>
+                    <p className='text-lg text-justify px-36 py-8 dark:text-slate-100'>{recipe.strInstructions}</p>
                 </div>
-                <a href={recipe.strYoutube} target='_blank' rel='noreferrer' className='text-2xl text-black hover:text-gray-600'>Watch on Youtube</a>
+                <a href={recipe.strYoutube} target='_blank' rel='noreferrer' className='text-2xl text-black hover:text-gray-600 dark:text-slate-100 dark:hover:text-zinc-300'>Watch on Youtube</a>
             </div>
         </div>
     );
