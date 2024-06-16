@@ -1,4 +1,3 @@
-
 function App() {
   return (
     <>
@@ -10,7 +9,7 @@ function App() {
           <div className="mx-auto grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 sm:gap-y-20 lg:mx-0 lg:max-w-none lg:grid-cols-2">
             <div className="lg:pr-8 lg:pt-4">
               <div className="lg:max-w-lg">
-                <h2 className="text-base font-semibold leading-7 text-indigo-600">React + TypeScript</h2>
+                <h2 className="text-base font-semibold leading-7 dark:text-indigo-300 text-fuchsia-800">React + TypeScript</h2>
                 <p className="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl dark:text-slate-100">Recipes Web App</p>
                 <p className="mt-6 text-lg leading-8 text-gray-600 dark:text-slate-100">App that fetches data from an API and show data in list.</p>
                 <dl className="mt-10 max-w-xl space-y-8 text-base leading-7 text-gray-600 lg:max-w-none">
@@ -26,7 +25,7 @@ function App() {
                 </dl>
               </div>
             </div>
-            <img src="./main.png" alt="Example screenshot" className="rounded-xl shadow-xl ring-1 ring-gray-400/10 sm:w-[57rem] md:-ml-4 lg:-ml-0 max-w-2xl"/>
+            <img src='./main.png' alt="Example screenshot" className="rounded-xl shadow-xl ring-1 ring-gray-400/10 sm:w-[57rem] md:-ml-4 lg:-ml-0 max-w-full"/>
           </div>
         </div>
       </div>

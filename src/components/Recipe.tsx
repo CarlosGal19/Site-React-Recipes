@@ -56,21 +56,28 @@ const Recipe = () => {
     }
 
     return (
-        <div className='text-center py-4 bg-gray-300 dark:bg-slate-700'>
-            <h1 className='py-8 font-bold text-6xl dark:text-slate-100'>Recipe:</h1>
-            <div className='py-8'>
-                <h2 className='font-bold text-4xl dark:text-slate-100'>{recipe.strMeal}</h2>
-                <h3 className='font-bold text-3xl pt-8 dark:text-slate-100'>Category: {recipe.strCategory}</h3>
-                {
-                    isFavorite( parseInt(recipe.idMeal) ) ?
-                        <button onClick={() => removeFavorite( parseInt(recipe.idMeal) )} className='bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded mt-4'>Remove from Favorites</button> :
-                        <button onClick={() => addFavorite({ id: parseInt(recipe.idMeal), name: recipe.strMeal, url: recipe.strMealThumb })} className='bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded mt-4'>Add to Favorites</button>
-                }
-                <img src={recipe.strMealThumb} alt={recipe.strMeal} className='h-auto rounded-full mx-auto my-6 w-1/4 shadow-xl' />
-                <div className='shadow-xl w-5/6 mx-auto my-8'>
-                    <p className='text-lg text-justify px-36 py-8 dark:text-slate-100'>{recipe.strInstructions}</p>
+        <div className='text-center py-4 bg-gray-300 dark:bg-slate-700 md:flex'>
+            <div className='md:flex-col md:w-1/2'>
+                <h1 className='mt-8 font-bold text-6xl dark:text-slate-100'>Recipe:</h1>
+                <div className='my-6'>
+                    <h2 className='font-bold text-4xl dark:text-slate-100'>{recipe.strMeal}</h2>
+                    <h3 className='font-bold text-3xl pt-8 dark:text-slate-100'>Category: {recipe.strCategory}</h3>
+                    {
+                        isFavorite(parseInt(recipe.idMeal)) ?
+                            <button onClick={() => removeFavorite(parseInt(recipe.idMeal))} className='mt-8 bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded'>Remove from Favorites</button> :
+                            <button onClick={() => addFavorite({ id: parseInt(recipe.idMeal), name: recipe.strMeal, url: recipe.strMealThumb })} className='bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded'>Add to Favorites</button>
+                    }
+                    <img src={recipe.strMealThumb} alt={recipe.strMeal} className='h-auto rounded-full mx-auto my-6 w-2/5 shadow-xl mt-12 md:w-1/2 lg:w-3/5 mb-12' />
                 </div>
-                <a href={recipe.strYoutube} target='_blank' rel='noreferrer' className='text-2xl text-black hover:text-gray-600 dark:text-slate-100 dark:hover:text-zinc-300'>Watch on Youtube</a>
+            </div>
+            <div className=' md:w-1/2 w-full mx-auto mr-8'>
+                <div className='shadow-xl my-8 dark:bg-zinc-700 bg-indigo-200'>
+                    <h2 className='dark:text-slate-100 text-6xl font-bold py-8'>Instructions</h2>
+                    <p className='text-lg text-justify px-16 py-8 dark:text-slate-100'>{recipe.strInstructions}</p>
+                </div>
+                <div className='my-8'>
+                    <a href={recipe.strYoutube} target='_blank' rel='noreferrer' className='text-2xl text-black hover:text-gray-600 dark:text-slate-100 dark:hover:text-zinc-300'>Watch on Youtube</a>
+                </div>
             </div>
         </div>
     );
