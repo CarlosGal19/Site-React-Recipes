@@ -46,11 +46,17 @@ const Recipe = () => {
     }
 
     if (!recipe) {
-        return <p>No recipe found</p>;
+        return (
+            <>
+                <div className='bg-gray-300 py-60'>
+                    <h1 className='text-6xl font-bold text-center'>No recipe found</h1>
+                </div>
+            </>
+        );
     }
 
     return (
-        <div className='text-center py-4'>
+        <div className='text-center py-4 bg-gray-300'>
             <h1 className='py-8 font-bold text-6xl'>Recipe:</h1>
             <div className='py-8'>
                 <h2 className='font-bold text-4xl'>{recipe.strMeal}</h2>
@@ -60,9 +66,11 @@ const Recipe = () => {
                         <button onClick={() => removeFavorite( parseInt(recipe.idMeal) )} className='bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded mt-4'>Remove from Favorites</button> :
                         <button onClick={() => addFavorite({ id: parseInt(recipe.idMeal), name: recipe.strMeal, url: recipe.strMealThumb })} className='bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded mt-4'>Add to Favorites</button>
                 }
-                <img src={recipe.strMealThumb} alt={recipe.strMeal} className='h-auto rounded-full mx-auto my-6 w-1/4' />
-                <p className='text-lg text-justify px-36 py-8'>{recipe.strInstructions}</p>
-                <a href={recipe.strYoutube} target='_blank' rel='noreferrer' className='text-blue-500 hover:text-blue-700 text-2xl'>Watch on Youtube</a>
+                <img src={recipe.strMealThumb} alt={recipe.strMeal} className='h-auto rounded-full mx-auto my-6 w-1/4 shadow-xl' />
+                <div className='shadow-xl w-5/6 mx-auto my-8'>
+                    <p className='text-lg text-justify px-36 py-8'>{recipe.strInstructions}</p>
+                </div>
+                <a href={recipe.strYoutube} target='_blank' rel='noreferrer' className='text-2xl text-black hover:text-gray-600'>Watch on Youtube</a>
             </div>
         </div>
     );

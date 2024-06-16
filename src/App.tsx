@@ -2,10 +2,10 @@
 function App() {
   return (
     <>
-      <div className="pt-16">
+      <div className="py-12 bg-gray-300">
         <h1 className="text-center text-7xl font-bold">Activity from Movile Applications</h1>
       </div>
-      <div className="overflow-hidden bg-white py-12 sm:py-32">
+      <div className="overflow-hidden bg-indigo-200 py-12 sm:py-32 w-full md:w-11/12 mx-auto rounded-xl mb-8 shadow-xl">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <div className="mx-auto grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 sm:gap-y-20 lg:mx-0 lg:max-w-none lg:grid-cols-2">
             <div className="lg:pr-8 lg:pt-4">
@@ -26,7 +26,7 @@ function App() {
                 </dl>
               </div>
             </div>
-            <img src="./main.png" alt="Example screenshot" className="w-[48rem] max-w-none rounded-xl shadow-xl ring-1 ring-gray-400/10 sm:w-[57rem] md:-ml-4 lg:-ml-0"/>
+            <img src="./main.png" alt="Example screenshot" className="rounded-xl shadow-xl ring-1 ring-gray-400/10 sm:w-[57rem] md:-ml-4 lg:-ml-0 max-w-2xl"/>
           </div>
         </div>
       </div>
