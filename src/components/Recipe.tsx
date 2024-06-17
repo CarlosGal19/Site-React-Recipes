@@ -65,7 +65,7 @@ const Recipe = () => {
                     {
                         isFavorite(parseInt(recipe.idMeal)) ?
                             <button onClick={() => removeFavorite(parseInt(recipe.idMeal))} className='mt-8 bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded'>Remove from Favorites</button> :
-                            <button onClick={() => addFavorite({ id: parseInt(recipe.idMeal), name: recipe.strMeal, url: recipe.strMealThumb })} className='bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded'>Add to Favorites</button>
+                            <button onClick={() => addFavorite({ id: parseInt(recipe.idMeal), name: recipe.strMeal, url: recipe.strMealThumb })} className='bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded mt-8'>Add to Favorites</button>
                     }
                     <img src={recipe.strMealThumb} alt={recipe.strMeal} className='h-auto rounded-full mx-auto my-6 w-2/5 shadow-xl mt-12 md:w-1/2 lg:w-3/5 mb-12' />
                 </div>
