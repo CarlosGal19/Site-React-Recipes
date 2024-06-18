@@ -30,7 +30,7 @@ function Meals() {
         <h1 className='py-8 font-bold text-6xl dark:text-slate-100'>Meal categories:</h1>
         {
           loading ? <p>Loading...</p> :
-              <ul className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 '>
+              <ul className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4'>
                 {meals.map((meal: Meal) => (
                   <li key={meal.idCategory} className='p-4 rounded-lg shadow-md flex-col justify-center items-center bg-indigo-200 dark:bg-zinc-700'>
                     <img src={meal.strCategoryThumb} alt={meal.strCategory} className='py-4 mx-auto'/>

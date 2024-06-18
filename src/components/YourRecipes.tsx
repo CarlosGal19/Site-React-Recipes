@@ -1,6 +1,7 @@
 import { useState, ChangeEvent, useEffect } from "react";
 
 interface Recipe {
+  id: number;
   name: string;
   time: string;
   description: string;
@@ -9,7 +10,7 @@ interface Recipe {
 function YourRecipes() {
   const [isEditting, setIsEditting] = useState<boolean>(false);
   const [recipes, setRecipes] = useState<Recipe[]>([]);
-  const [nuevoRecipe, setNuevoRecipe] = useState<Recipe>({ name: '', time: '', description: '' });
+  const [nuevoRecipe, setNuevoRecipe] = useState<Recipe>({ id: 0, name: '', time: '', description: '' });
 
   const nuevoRecipeChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -20,25 +21,23 @@ function YourRecipes() {
   };
 
   useEffect(() => {
-    function getLocal() {
+    const getLocal = () => {
       const storedRecipes = localStorage.getItem("yourRecipes");
-      if (storedRecipes === undefined || storedRecipes === null) {
-        setRecipes([]);
-        return;
+      if (storedRecipes) {
+        setRecipes(JSON.parse(storedRecipes));
       }
-      setRecipes(JSON.parse(storedRecipes));
     }
     getLocal();
   }, []);
 
   const handleAgregarRecipe = () => {
     if (nuevoRecipe.name && nuevoRecipe.time && nuevoRecipe.description) {
-      const updatedRecipes = [...recipes, nuevoRecipe];
+      const updatedRecipes = [...recipes, { ...nuevoRecipe, id: Date.now() }];
       setRecipes(updatedRecipes);
       localStorage.setItem("yourRecipes", JSON.stringify(updatedRecipes));
-      setNuevoRecipe({ name: '', time: '', description: '' });
+      setNuevoRecipe({ id: 0, name: '', time: '', description: '' });
+      console.log('Recipe added:', nuevoRecipe);
     }
-
     setIsEditting(false);
   };
 
@@ -50,60 +49,66 @@ function YourRecipes() {
     setIsEditting(false);
   };
 
+  const handleRemove = (id: number) => {
+    const updatedRecipes = recipes.filter(recipe => recipe.id !== id);
+    localStorage.setItem("yourRecipes", JSON.stringify(updatedRecipes));
+    setRecipes(updatedRecipes);
+  }
+
   return (
-    <div className="Index">
+    <div className="w-5/6 mx-auto">
       <div className="inner-container">
-        <style>
-          {`
-            .recipe-box {
-              border: 1px solid #ccc;
-              border-radius: 8px;
-              padding: 16px;
-              margin: 16px 0;
-              background-color: #f9f9f9;
-              box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-            }
-          `}
-        </style>
         <div className="text-center">
           {!isEditting && (
-            <h1 className="mt-8 font-bold text-6xl dark:text-slate-100">Your Recipes: (in revision)</h1>
+            <h1 className="mt-8 font-bold text-6xl dark:text-slate-100 my-8">Your Recipes:</h1>
           )}
           {isEditting ? (
             <div>
               <h2 className="dark:text-slate-100 text-6xl font-bold py-8">Add New Recipe</h2>
-              <form className="text-lg text-justify px-16 py-8 dark:text-slate-100">
-                <label>
-                  Name:
-                  <input type="text" name="name" value={nuevoRecipe.name} onChange={nuevoRecipeChange} />
-                </label>
-                <br />
-                <label>
-                  Time:
-                  <input type="text" name="time" value={nuevoRecipe.time} onChange={nuevoRecipeChange} />
-                </label>
-                <br />
-                <label>
-                  Description:
-                  <input type="text" name="description" value={nuevoRecipe.description} onChange={nuevoRecipeChange} />
-                </label>
-                <br />
-                <button type="button" onClick={handleAgregarRecipe}>Add Recipe</button>
-              </form>
-              <button type="button" onClick={handleViewRecipes}>View Recipes</button>
+              <div>
+                <form className="text-lg px-16 text-center">
+                  <div className="my-3">
+                    <label className="dark:text-slate-100 text-xl font-bold mx-8">
+                      Name:
+                    </label>
+                    <input type="text" name="name" className="rounded-md" value={nuevoRecipe.name} onChange={nuevoRecipeChange} />
+                  </div>
+                  <div className="my-3">
+                    <label className="dark:text-slate-100 text-xl font-bold mx-8">
+                      Time:
+                    </label>
+                    <input type="text" name="time" className="rounded-md" value={nuevoRecipe.time} onChange={nuevoRecipeChange} />
+                  </div>
+                  <div className="my-3">
+                    <label className="dark:text-slate-100 text-xl font-bold mx-2">
+                      Description:
+                    </label>
+                    <input type="text" name="description" className="rounded-md" value={nuevoRecipe.description} onChange={nuevoRecipeChange} />
+                  </div>
+                  <button type="button" onClick={handleAgregarRecipe} className="my-8 py-3 bg-green-500 hover:bg-green-700 px-2 rounded-xl text-white font-bold">Add Recipe</button>
+                </form>
+              </div>
+              <button type="button" className="my-8 py-3 bg-indigo-500 hover:bg-indigo-700 px-2 rounded-xl text-white font-bold" onClick={handleViewRecipes}>View Recipes</button>
             </div>
           ) : (
             <div>
-              <ul>
-                {recipes && recipes.map((recipe, index) => (
-                  <li key={index} className="recipe-box">
-                    <h2>{recipe.name}</h2>
-                    <p>{recipe.time}</p>
-                    <p>{recipe.description}</p>
-                  </li>
-                ))}
-              </ul>
-              <button type="button" onClick={handleEdit}>Add New Recipe</button>
+              {recipes.length > 0 ? (
+                <ul className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4'>
+                  {recipes.map((recipe) => (
+                    <li key={recipe.id} className='p-4 rounded-lg shadow-md flex-col justify-center items-center bg-indigo-200 dark:bg-zinc-700'>
+                      <h2 className="dark:text-slate-100 font-bold text-3xl my-6">{recipe.name}</h2>
+                      <p className="dark:text-slate-100 text-xl my-4">{recipe.time}</p>
+                      <p className="dark:text-slate-100 text-xl my-4">{recipe.description}</p>
+                      <button id={`${recipe.id}`} className="text-slate-100 font-bold rounded-xl bg-red-500 hover:bg-red-700 px-4 py-2" onClick={() => handleRemove(recipe.id)}>Remove</button>
+                    </li>
+                  ))}
+                </ul>
+              ) : (
+                <div className="flex justify-center items-center h-96">
+                  <h2 className="text-4xl font-bold text-center dark:text-slate-100 my-12">There’s no recipe requests</h2>
+                </div>
+              )}
+              <button type="button" onClick={handleEdit} className="my-8 py-3 bg-indigo-500 hover:bg-indigo-700 px-2 rounded-xl text-white font-bold">Add New Recipe</button>
             </div>
           )}
         </div>
